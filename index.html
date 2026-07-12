@@ -344,7 +344,7 @@ type="text"
 id="compareInput"
 placeholder="Example: Malaria Test">
 
-<button>
+<button onclick="comparePrices()">
 Compare
 </button>
 
@@ -364,6 +364,20 @@ Compare
 <p>
 Select a laboratory, choose your preferred date, and submit your booking request.
 </p>
+
+<label>Your Full Name</label>
+
+<input
+type="text"
+id="patientName"
+placeholder="Enter your full name">
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="patientPhone"
+placeholder="Enter your phone number">
 
 <label>Select Laboratory</label>
 
@@ -403,11 +417,15 @@ Select a laboratory, choose your preferred date, and submit your booking request
 
 <label>Preferred Date</label>
 
-<input type="date" id="bookingDate">
+<input
+type="date"
+id="bookingDate">
 
 <label>Preferred Time</label>
 
-<input type="time" id="bookingTime">
+<input
+type="time"
+id="bookingTime">
 
 <button onclick="bookTest()">
 
@@ -418,7 +436,6 @@ Book Appointment
 <p id="bookingMessage"></p>
 
 </section>
-
 
 
 <!-- ================= UPLOAD RESULT ================= -->
