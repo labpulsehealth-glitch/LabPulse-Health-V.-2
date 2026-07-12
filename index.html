@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LabPulse Health</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="hero">
+
+  <div class="hero-content">
+
+    <h1>LabPulse Health</h1>
+
+    <p class="tagline">
+      Find trusted laboratories, compare prices, book medical tests,
+      securely store your results, and receive AI-powered explanations.
+    </p>
+
+    <div class="hero-buttons">
+
+      <button onclick="showSection('labs')">
+        Find a Laboratory
+      </button>
+
+      <button onclick="showSection('compare')">
+        Compare Prices
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="navbar">
+
+<div class="logo">
+🩺 LabPulse
+</div>
+
+<div class="nav-links">
+
+<button onclick="showSection('home')">🏠 Home</button>
+
+<button onclick="showSection('labs')">🔬 Find Labs</button>
+
+<button onclick="showSection('compare')">💰 Prices</button>
+
+<button onclick="showSection('booking')">📅 Book</button>
+
+<button onclick="showSection('ai')">🤖 AI</button>
+
+<button onclick="showSection('records')">📁 Records</button>
+
+<button onclick="showSection('profile')">👤 Profile</button>
+
+</div>
+
+<div class="dropdown">
+
+<button class="dropbtn">
+
+☰ More
+
+</button>
+
+<div class="dropdown-content">
+
+<button onclick="showSection('labPartner')">
+🏥 Register Your Lab
+</button>
+
+<button onclick="showSection('dashboard')">
+📊 Lab Dashboard
+</button>
+
+<button onclick="showSection('about')">
+ℹ️ About
+</button>
+
+<button onclick="showSection('faq')">
+❓ FAQ
+</button>
+
+<button onclick="showSection('contact')">
+📞 Contact
+</button>
+
+<button onclick="showSection('auth')">
+🔐 Login
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page">
+
+<h2>Healthcare Testing Made Simple</h2>
+
+<p class="home-text">
+
+LabPulse helps patients discover verified medical laboratories,
+compare test prices, securely store laboratory reports,
+and better understand their results with AI assistance.
+
+</p>
+
+</section>
+
+
+
+<!-- ================= WHY LABPULSE ================= -->
+
+<section class="feature-section">
+
+<h2>Why Choose LabPulse?</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<h3>🔬 Verified Laboratories</h3>
+
+<p>
+Only trusted laboratories approved by LabPulse are marked as verified.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>💰 Compare Prices</h3>
+
+<p>
+Compare laboratory prices before making your decision.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>📅 Easy Booking</h3>
+
+<p>
+Book appointments without unnecessary phone calls.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>📁 Secure Records</h3>
+
+<p>
+Keep all your laboratory reports safely in one place.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>🤖 AI Insights</h3>
+
+<p>
+Receive simple explanations of your laboratory results.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<h3>❤️ Better Healthcare</h3>
+
+<p>
+Helping patients make informed healthcare decisions.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="feature-section">
+
+<h2>How LabPulse Works</h2>
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<p>Search for a laboratory.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<p>Compare prices.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<p>Book your preferred test.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">4</div>
+
+<p>Upload your result.</p>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">5</div>
+
+<p>Receive AI-powered explanations.</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= POPULAR TESTS ================= -->
+
+<section class="feature-section">
+
+<h2>Popular Laboratory Tests</h2>
+
+<div class="test-grid">
+
+<div class="test-card">🩸 Full Blood Count</div>
+
+<div class="test-card">🦟 Malaria Test</div>
+
+<div class="test-card">🩺 Blood Glucose</div>
+
+<div class="test-card">❤️ Lipid Profile</div>
+
+<div class="test-card">🧬 DNA Testing</div>
+
+<div class="test-card">🦠 HIV Screening</div>
+
+<div class="test-card">🫀 Kidney Function</div>
+
+<div class="test-card">🧪 Liver Function</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= HEALTH TIPS ================= -->
+
+<section class="feature-section">
+
+<h2>Health Tips</h2>
+
+<div class="tips">
+
+<p>💧 Drink enough water unless instructed otherwise.</p>
+
+<p>🍽 Some blood tests require fasting.</p>
+
+<p>📄 Keep previous laboratory reports for comparison.</p>
+
+<p>🩺 Always discuss abnormal results with your healthcare professional.</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FIND LABS ================= -->
+
+<section id="labs" class="page">
+
+<h2>Find Laboratories</h2>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search laboratory or test">
+
+<button onclick="findLabs()">
+Search
+</button>
+
+<div id="labResults"></div>
+
+</section>
+
+
+
+<!-- ================= COMPARE PRICES ================= -->
+
+<section id="compare" class="page">
+
+<h2>Compare Laboratory Prices</h2>
+
+<p>
+Search a laboratory test to compare prices from different laboratories.
+</p>
+
+<input
+type="text"
+id="compareInput"
+placeholder="Example: Malaria Test">
+
+<button>
+Compare
+</button>
+
+<div id="compareResults">
+
+<p>Price comparison will appear here.</p>
+
+</div>
+
+</section>
+<!-- ================= BOOK TEST ================= -->
+
+<section id="booking" class="page">
+
+<h2>Book a Laboratory Test</h2>
+
+<p>
+Select a laboratory, choose your preferred date, and submit your booking request.
+</p>
+
+<label>Select Laboratory</label>
+
+<select id="labSelect">
+
+<option>Select a Laboratory</option>
+
+<option>Ace-Biomed Laboratories</option>
+
+<option>Alpha Diagnostics</option>
+
+<option>LifeCare Medical Laboratory</option>
+
+<option>St. Mary's Diagnostic Centre</option>
+
+</select>
+
+<label>Select Test</label>
+
+<select id="testSelect">
+
+<option>Select a Test</option>
+
+<option>Malaria Test</option>
+
+<option>Full Blood Count</option>
+
+<option>Blood Glucose</option>
+
+<option>Lipid Profile</option>
+
+<option>Kidney Function Test</option>
+
+<option>Liver Function Test</option>
+
+</select>
+
+<label>Preferred Date</label>
+
+<input type="date" id="bookingDate">
+
+<label>Preferred Time</label>
+
+<input type="time" id="bookingTime">
+
+<button onclick="bookTest()">
+
+Book Appointment
+
+</button>
+
+<p id="bookingMessage"></p>
+
+</section>
+
+
+
+<!-- ================= UPLOAD RESULT ================= -->
+
+<section id="upload" class="page">
+
+<h2>Upload Laboratory Result</h2>
+
+<p>
+
+Upload your laboratory report securely.
+
+</p>
+
+<input
+
+type="file"
+
+id="fileUpload"
+
+accept=".pdf,.jpg,.jpeg,.png">
+
+<button onclick="uploadReport()">
+
+Upload Report
+
+</button>
+
+<p id="uploadMessage"></p>
+
+</section>
+
+
+
+<!-- ================= MY RECORDS ================= -->
+
+<section id="records" class="page">
+
+<h2>My Laboratory Records</h2>
+
+<p>
+
+All uploaded reports will appear below.
+
+</p>
+
+<ul id="recordList">
+
+</ul>
+
+</section>
+
+
+
+<!-- ================= AI INTERPRETER ================= -->
+
+<section id="ai" class="page">
+
+<h2>AI Laboratory Result Interpreter</h2>
+
+<p>
+
+Enter your laboratory test details for a simplified explanation.
+
+</p>
+
+<label>Test Name</label>
+
+<input
+
+type="text"
+
+id="testName"
+
+placeholder="Example: Hemoglobin">
+
+<label>Result Value</label>
+
+<input
+
+type="number"
+
+id="testValue"
+
+placeholder="Enter Value">
+
+<button onclick="interpretResult()">
+
+Interpret Result
+
+</button>
+
+<div class="ai-result">
+
+<p id="aiResult"></p>
+
+</div>
+
+<p class="disclaimer">
+
+⚠ AI explanations are educational only and should never replace advice from a qualified healthcare professional.
+
+</p>
+
+</section>
+
+
+
+<!-- ================= MY PROFILE ================= -->
+
+<section id="profile" class="page">
+
+<h2>My Profile</h2>
+
+<div class="profile-card">
+
+<div class="profile-avatar">
+
+👤
+
+</div>
+
+<h3>Patient Name</h3>
+
+<p>Email: patient@email.com</p>
+
+<p>Phone: +234 XXX XXX XXXX</p>
+
+<p>Location: Nigeria</p>
+
+<button>
+
+Edit Profile
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= LOGIN / SIGN UP ================= -->
+
+<section id="auth" class="page">
+
+<h2>Patient Login</h2>
+
+<div class="auth-box">
+
+<input
+
+type="email"
+
+id="email"
+
+placeholder="Email Address">
+
+<input
+
+type="password"
+
+id="password"
+
+placeholder="Password">
+
+<button onclick="login()">
+
+Login
+
+</button>
+
+<button onclick="signUp()">
+
+Create Account
+
+</button>
+
+<p id="authMsg"></p>
+
+</div>
+
+</section>
+<!-- ================= LABORATORY PARTNER ================= -->
+
+<section id="labPartner" class="page">
+
+<h2>Partner With LabPulse</h2>
+
+<p>
+
+Own or manage a medical laboratory?
+
+Register below to become part of the LabPulse network.
+
+Every laboratory is manually verified before appearing to patients.
+
+</p>
+
+<form id="labRegistration">
+
+<label>Laboratory Name</label>
+
+<input
+type="text"
+id="labName"
+placeholder="Enter Laboratory Name">
+
+<label>Owner / Manager</label>
+
+<input
+type="text"
+id="ownerName"
+placeholder="Full Name">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="labEmail"
+placeholder="example@email.com">
+
+<label>Phone Number</label>
+
+<input
+type="tel"
+id="labPhone"
+placeholder="+234...">
+
+<label>Location</label>
+
+<input
+type="text"
+id="labLocation"
+placeholder="City / State">
+
+<label>Services Offered</label>
+
+<textarea
+id="services"
+placeholder="Example: Malaria Test, FBC, DNA Test"></textarea>
+
+<button onclick="submitLabRegistration()" type="button">
+
+Submit Registration
+
+</button>
+
+</form>
+
+<div class="pending-box">
+
+<h3>Application Status</h3>
+
+<p>
+
+⏳ Pending LabPulse Verification
+
+</p>
+
+<p>
+
+Applications are reviewed by the LabPulse team before laboratories become visible to patients.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= LAB DASHBOARD ================= -->
+
+<section id="dashboard" class="page">
+
+<h2>Laboratory Dashboard</h2>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+
+<h3>Total Bookings</h3>
+
+<h1>0</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Upcoming Appointments</h3>
+
+<h1>0</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Uploaded Results</h3>
+
+<h1>0</h1>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>Status</h3>
+
+<p>
+
+Pending Verification
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="page">
+
+<h2>About LabPulse</h2>
+
+<p>
+
+LabPulse is building Africa's trusted digital laboratory platform.
+
+We help patients discover verified laboratories, compare prices,
+
+book tests online, securely store laboratory records,
+
+and better understand medical results using AI.
+
+</p>
+
+<p>
+
+Our long-term vision is to make laboratory services
+
+more transparent, affordable, and accessible across Africa.
+
+</p>
+
+</section>
+
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="page">
+
+<h2>Contact Us</h2>
+
+<p>
+
+Have questions or want to partner with us?
+
+</p>
+
+<p>
+
+📧 support@labpulsehealth.com
+
+</p>
+
+<p>
+
+🌍 Nigeria
+
+</p>
+
+<p>
+
+📱 +234 XXX XXX XXXX
+
+</p>
+
+</section>
+
+
+
+<!-- ================= FAQ ================= -->
+
+<section id="faq" class="page">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item">
+
+<h3>Is LabPulse a laboratory?</h3>
+
+<p>
+
+No.
+
+LabPulse connects patients with verified laboratories.
+
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>Can I compare prices?</h3>
+
+<p>
+
+Yes.
+
+Patients can compare laboratory prices before booking.
+
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>Is my data secure?</h3>
+
+<p>
+
+Yes.
+
+Patient information is stored securely and privacy is a priority.
+
+</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>Does AI replace doctors?</h3>
+
+<p>
+
+No.
+
+AI explanations are educational and should never replace medical advice.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>LabPulse Health</h3>
+
+<p>
+
+Helping patients make smarter laboratory decisions.
+
+</p>
+
+<div class="footer-links">
+
+<span>Privacy Policy</span>
+
+<span>Terms of Service</span>
+
+<span>Support</span>
+
+</div>
+
+<p>
+
+© 2026 LabPulse Health.
+
+All Rights Reserved.
+
+</p>
+
+</footer>
+
+
+
+<!-- ================= POPUP ================= -->
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<div id="popupIcon" class="popup-icon"></div>
+
+<h3 id="popupTitle"></h3>
+
+<p id="popupText"></p>
+
+<button onclick="closePopup()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
