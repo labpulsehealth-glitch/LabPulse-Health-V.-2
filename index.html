@@ -943,7 +943,119 @@ Close
 </div>
 
 </div>
+<!-- ================= LABORATORY REGISTRATION ================= -->
 
+<section id="labPartner" class="page">
+
+<h2>🏥 Register Your Laboratory</h2>
+
+<p>
+Join LabPulse and connect your laboratory with patients looking for trusted diagnostic services.
+</p>
+
+<label>Laboratory Name</label>
+<input type="text" id="labName" placeholder="Enter laboratory name">
+
+<label>Owner / Manager Name</label>
+<input type="text" id="ownerName" placeholder="Enter owner's full name">
+
+<label>Email Address</label>
+<input type="email" id="labEmail" placeholder="Enter email">
+
+<label>Phone Number</label>
+<input type="tel" id="labPhone" placeholder="Enter phone number">
+
+<label>Laboratory Address</label>
+<input type="text" id="labAddress" placeholder="Enter address">
+
+<label>City</label>
+<input type="text" id="labCity" placeholder="Enter city">
+
+<label>State</label>
+<input type="text" id="labState" placeholder="Enter state">
+
+<label>Country</label>
+
+<select id="labCountry">
+
+<option>Nigeria</option>
+<option>Ghana</option>
+<option>Kenya</option>
+<option>South Africa</option>
+<option>Uganda</option>
+
+</select>
+
+<label>Laboratory Type</label>
+
+<select id="labType">
+
+<option>Private Laboratory</option>
+<option>Hospital Laboratory</option>
+<option>Diagnostic Centre</option>
+<option>Research Laboratory</option>
+
+</select>
+
+<label>Operating Hours</label>
+
+<div class="time-row">
+
+<input type="time" id="openTime">
+
+<input type="time" id="closeTime">
+
+</div>
+
+<label>About Your Laboratory</label>
+
+<textarea
+id="labDescription"
+rows="5"
+placeholder="Tell patients about your laboratory..."></textarea>
+
+<h3>Available Laboratory Tests</h3>
+
+<div class="checkbox-group">
+
+<label><input type="checkbox"> Malaria Test</label>
+
+<label><input type="checkbox"> Full Blood Count</label>
+
+<label><input type="checkbox"> Blood Glucose</label>
+
+<label><input type="checkbox"> Lipid Profile</label>
+
+<label><input type="checkbox"> Kidney Function Test</label>
+
+<label><input type="checkbox"> Liver Function Test</label>
+
+<label><input type="checkbox"> HIV Screening</label>
+
+<label><input type="checkbox"> Pregnancy Test</label>
+
+</div>
+
+<h3>Upload Documents</h3>
+
+<label>Operating Licence</label>
+<input type="file">
+
+<label>CAC Registration (Optional)</label>
+<input type="file">
+
+<label>Laboratory Logo (Optional)</label>
+<input type="file">
+
+<button onclick="registerLab()">
+
+Submit Registration
+
+</button>
+
+<p id="labRegisterMessage"></p>
+
+</section>
 
 
 <script src="script.js"></script>
