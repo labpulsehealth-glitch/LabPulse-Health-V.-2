@@ -619,93 +619,6 @@ Create Account
 </div>
 
 </section>
-<!-- ================= LABORATORY PARTNER ================= -->
-
-<section id="labPartner" class="page">
-
-<h2>Partner With LabPulse</h2>
-
-<p>
-
-Own or manage a medical laboratory?
-
-Register below to become part of the LabPulse network.
-
-Every laboratory is manually verified before appearing to patients.
-
-</p>
-
-<form id="labRegistration">
-
-<label>Laboratory Name</label>
-
-<input
-type="text"
-id="labName"
-placeholder="Enter Laboratory Name">
-
-<label>Owner / Manager</label>
-
-<input
-type="text"
-id="ownerName"
-placeholder="Full Name">
-
-<label>Email Address</label>
-
-<input
-type="email"
-id="labEmail"
-placeholder="example@email.com">
-
-<label>Phone Number</label>
-
-<input
-type="tel"
-id="labPhone"
-placeholder="+234...">
-
-<label>Location</label>
-
-<input
-type="text"
-id="labLocation"
-placeholder="City / State">
-
-<label>Services Offered</label>
-
-<textarea
-id="services"
-placeholder="Example: Malaria Test, FBC, DNA Test"></textarea>
-
-<button onclick="submitLabRegistration()" type="button">
-
-Submit Registration
-
-</button>
-
-</form>
-
-<div class="pending-box">
-
-<h3>Application Status</h3>
-
-<p>
-
-⏳ Pending LabPulse Verification
-
-</p>
-
-<p>
-
-Applications are reviewed by the LabPulse team before laboratories become visible to patients.
-
-</p>
-
-</div>
-
-</section>
-
 
 
 <!-- ================= LAB DASHBOARD ================= -->
@@ -920,29 +833,6 @@ All Rights Reserved.
 
 </footer>
 
-
-
-<!-- ================= POPUP ================= -->
-
-<div id="popup" class="popup">
-
-<div class="popup-content">
-
-<div id="popupIcon" class="popup-icon"></div>
-
-<h3 id="popupTitle"></h3>
-
-<p id="popupText"></p>
-
-<button onclick="closePopup()">
-
-Close
-
-</button>
-
-</div>
-
-</div>
 <!-- ================= LABORATORY REGISTRATION ================= -->
 
 <section id="labPartner" class="page">
@@ -1056,7 +946,29 @@ Submit Registration
 <p id="labRegisterMessage"></p>
 
 </section>
+  
 
+<!-- ================= POPUP ================= -->
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<div id="popupIcon" class="popup-icon"></div>
+
+<h3 id="popupTitle"></h3>
+
+<p id="popupText"></p>
+
+<button onclick="closePopup()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
