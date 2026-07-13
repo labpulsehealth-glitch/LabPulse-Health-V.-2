@@ -567,3 +567,54 @@ window.onclick = function(event){
 // Current version is a frontend prototype.
 
 console.log("✅ LabPulse Health Loaded Successfully");
+
+// ===============================
+// LABORATORY REGISTRATION
+// ===============================
+
+window.registerLab = function(){
+
+let labName = document.getElementById("labName").value.trim();
+
+let ownerName = document.getElementById("ownerName").value.trim();
+
+let email = document.getElementById("labEmail").value.trim();
+
+let phone = document.getElementById("labPhone").value.trim();
+
+let address = document.getElementById("labAddress").value.trim();
+
+let city = document.getElementById("labCity").value.trim();
+
+let state = document.getElementById("labState").value.trim();
+
+let description = document.getElementById("labDescription").value.trim();
+
+if(
+labName==="" ||
+ownerName==="" ||
+email==="" ||
+phone==="" ||
+address==="" ||
+city==="" ||
+state==="" ||
+description===""){
+    
+document.getElementById("labRegisterMessage").innerHTML =
+"❌ Please complete all required fields.";
+
+return;
+
+}
+
+document.getElementById("labRegisterMessage").innerHTML =
+
+`✅ <strong>${labName}</strong>, your registration has been submitted successfully.<br><br>
+
+Your laboratory is now <strong>Pending Verification</strong> by the LabPulse team.
+
+<br><br>
+
+Once approved, patients will be able to find your laboratory, compare your prices, and book tests through LabPulse.`;
+
+}
