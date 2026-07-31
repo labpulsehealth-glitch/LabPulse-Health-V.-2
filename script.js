@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // =========================================
 
 window.showSection = function(section){
+    if (section === "records" && typeof loadRecords === "function") {
+    loadRecords();
+}
 
     let pages = document.querySelectorAll(".page");
 

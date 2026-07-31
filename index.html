@@ -60,6 +60,8 @@
 
 <button onclick="showSection('booking')">📅 Book</button>
 
+<button onclick="showSection('appointments')">📋 My Appointments</button>
+
 <button onclick="showSection('ai')">🤖 AI</button>
 
 <button onclick="showSection('records')">📁 Records</button>
@@ -82,7 +84,7 @@
 🏥 Register Your Lab
 </button>
 
-<button onclick="showSection('dashboard')">
+<button id="dashboardBtn" onclick="showSection('dashboard')" style="display:none;">
 📊 Lab Dashboard
 </button>
 
@@ -436,7 +438,23 @@ Book Appointment
 <p id="bookingMessage"></p>
 
 </section>
+<!-- ================= MY APPOINTMENTS ================= -->
 
+<section id="appointments" class="page">
+
+<h2>My Appointments</h2>
+
+<p>
+Here are all your laboratory appointments.
+</p>
+
+<div id="appointmentList">
+
+<p>No appointments found.</p>
+
+</div>
+
+</section>
 
 <!-- ================= UPLOAD RESULT ================= -->
 
@@ -482,10 +500,11 @@ All uploaded reports will appear below.
 
 </p>
 
-<ul id="recordList">
+<div id="recordList">
 
-</ul>
+<p>No laboratory results available.</p>
 
+</div>
 </section>
 
 
@@ -652,7 +671,7 @@ placeholder="Password">
 Login
 
 </button>
-
+<button onclick="labLogin()">🏥 Laboratory Login</button>
 <button onclick="signUp()">
 
 Create Account
@@ -678,7 +697,7 @@ Create Account
 
 <h3>Total Bookings</h3>
 
-<h1>0</h1>
+<h1 id="totalBookings">0</h1>
 
 </div>
 
@@ -686,7 +705,7 @@ Create Account
 
 <h3>Upcoming Appointments</h3>
 
-<h1>0</h1>
+<h1 id="pendingBookings">0</h1>
 
 </div>
 
@@ -694,7 +713,7 @@ Create Account
 
 <h3>Uploaded Results</h3>
 
-<h1>0</h1>
+<h1 id="uploadedResults">0</h1>
 
 </div>
 
@@ -709,6 +728,14 @@ Pending Verification
 </p>
 
 </div>
+
+</div><hr>
+
+<h3>Incoming Appointments</h3>
+
+<div id="dashboardAppointments">
+
+<p>No appointments yet.</p>
 
 </div>
 
@@ -1014,11 +1041,15 @@ Close
 </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script type="module" src="firebase.js"></script>
 <script type="module" src="auth.js"></script>
 <script type="module" src="profile.js"></script>
 <script type="module" src="booking.js"></script>
+<script type="module" src="dashboard.js"></script>
+<script type="module" src="records.js"></script>
+<script type="module" src="pdf.js"></script>
 <script src="script.js"></script>
 </body>
 

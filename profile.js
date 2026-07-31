@@ -1,7 +1,7 @@
 console.log("Profile.js loaded successfully!");
 import { auth, database } from "./firebase.js";
 
-import { ref, set } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { ref, set, get } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 window.saveProfile = async function () {
 
@@ -43,6 +43,42 @@ window.saveProfile = async function () {
 
         document.getElementById("profileMessage").innerHTML =
             "❌ " + error.message;
+
+    }
+
+};
+// ===============================
+// LOAD PROFILE
+// ===============================
+
+window.loadProfile = async function () {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    try {
+
+        const snapshot = await get(ref(database, "patients/" + user.uid));
+
+        if (snapshot.exists()) {
+
+            const data = snapshot.val();
+
+            document.getElementById("profileName").value =
+                data.fullName || "";
+
+            document.getElementById("profilePhone").value =
+                data.phone || "";
+
+            document.getElementById("profileLocation").value =
+                data.location || "";
+
+        }
+
+    } catch (error) {
+
+        console.log(error);
 
     }
 

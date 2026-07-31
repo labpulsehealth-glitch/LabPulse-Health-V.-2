@@ -1,14 +1,12 @@
 import { auth, database } from "./firebase.js";
-
 import {
   ref,
-  push
+  push,
+  get
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
-
 window.bookTest = async function () {
 
     const user = auth.currentUser;
-
     if (!user) {
 
         document.getElementById("bookingMessage").innerHTML =
@@ -75,6 +73,83 @@ window.bookTest = async function () {
 
         document.getElementById("bookingMessage").innerHTML =
             "❌ " + error.message;
+
+    }
+
+};
+// ===============================
+// LOAD APPOINTMENTS
+// ===============================
+
+window.loadAppointments = async function () {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    const appointmentList =
+        document.getElementById("appointmentList");
+
+    appointmentList.innerHTML = "";
+
+    try {
+
+        const snapshot = await get(ref(database, "appointments"));
+
+        if (!snapshot.exists()) {
+
+            appointmentList.innerHTML =
+                "<p>No appointments found.</p>";
+
+            return;
+
+        }
+
+        snapshot.forEach((child) => {
+
+            const appointment = child.val();
+
+            if (appointment.patientId === user.uid) {
+
+                appointmentList.innerHTML += `
+
+                <div class="lab-card">
+
+                    <h3>${appointment.test}</h3>
+
+                    <p><strong>🏥 Laboratory:</strong>
+                    ${appointment.laboratory}</p>
+
+                    <p><strong>📅 Date:</strong>
+                    ${appointment.date}</p>
+
+                    <p><strong>🕒 Time:</strong>
+                    ${appointment.time}</p>
+
+                    <p><strong>Status:</strong>
+                    <span class="pending">
+                    🟡 ${appointment.status}
+                    </span></p>
+
+                </div>
+
+                `;
+
+            }
+
+        });
+
+        if (appointmentList.innerHTML === "") {
+
+            appointmentList.innerHTML =
+                "<p>No appointments found.</p>";
+
+        }
+
+    } catch (error) {
+
+        appointmentList.innerHTML =
+            "<p>Error loading appointments.</p>";
 
     }
 
