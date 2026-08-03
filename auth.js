@@ -126,6 +126,9 @@ if (typeof loadDashboard === "function") {
 if (typeof loadRecords === "function") {
     loadRecords();
 }
+if (typeof loadNotifications === "function") {
+    loadNotifications();
+}
     }
 
 });

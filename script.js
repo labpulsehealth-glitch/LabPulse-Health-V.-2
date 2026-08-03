@@ -73,6 +73,11 @@ window.showSection = function(section){
     if (section === "records" && typeof loadRecords === "function") {
     loadRecords();
 }
+if (section === "notifications" && typeof loadNotifications === "function") {
+
+    loadNotifications();
+
+}
 
     let pages = document.querySelectorAll(".page");
 

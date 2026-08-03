@@ -1,69 +1,91 @@
-window.downloadReport = function (
-    patientName,
-    patientEmail,
-    laboratory,
-    test,
-    date,
-    result
-) {
+import { database } from "./firebase.js";
+
+import {
+    ref,
+    get
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+const logo = new Image();
+logo.src = "images/logo.png";
+window.downloadReport = async function (appointmentId) {
+    const snapshot = await get(ref(database, "appointments/" + appointmentId));
+
+if (!snapshot.exists()) {
+
+    alert("Appointment not found.");
+
+    return;
+
+}
+
+const appointment = snapshot.val();
+
+const patientName = appointment.patientName;
+const patientEmail = appointment.patientEmail;
+const laboratory = appointment.laboratory;
+const test = appointment.test;
+const date = appointment.date;
+const result = appointment.result;
 
     const { jsPDF } = window.jspdf;
 
     const doc = new jsPDF();
 
     // ===== HEADER =====
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.text("LabPulse Health", 105, 20, { align: "center" });
 
-    doc.setFontSize(16);
-    doc.text("LABORATORY REPORT", 105, 30, { align: "center" });
+// Add logo
+doc.addImage(logo, "PNG", 65, 15, 80, 50);
 
-    doc.line(20, 35, 190, 35);
+// Report title
+doc.setFont("helvetica", "bold");
+doc.setFontSize(16);
+doc.text("LABORATORY REPORT", 105, 75, { align: "center" });
+
+doc.line(20, 80, 190, 80);
 
     // ===== PATIENT DETAILS =====
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
 
-    doc.text("Patient Name:", 20, 50);
+    doc.text("Patient Name:", 20, 95);
     doc.setFont("helvetica", "normal");
-    doc.text(patientName, 70, 50);
+    doc.text(patientName, 70, 95);
 
     doc.setFont("helvetica", "bold");
-    doc.text("Email:", 20, 60);
+    doc.text("Email:", 20, 105);
     doc.setFont("helvetica", "normal");
-    doc.text(patientEmail, 70, 60);
+    doc.text(patientEmail, 70, 105);
 
     doc.setFont("helvetica", "bold");
-    doc.text("Laboratory:", 20, 70);
+    doc.text("Laboratory:", 20, 115);
     doc.setFont("helvetica", "normal");
-    doc.text(laboratory, 70, 70);
+    doc.text(laboratory, 70, 115);
 
     doc.setFont("helvetica", "bold");
-    doc.text("Test:", 20, 80);
+    doc.text("Test:", 20, 125);
     doc.setFont("helvetica", "normal");
-    doc.text(test, 70, 80);
+    doc.text(test, 70, 125);
 
     doc.setFont("helvetica", "bold");
-    doc.text("Date:", 20, 90);
+    doc.text("Date:", 20, 135);
     doc.setFont("helvetica", "normal");
-    doc.text(date, 70, 90);
+    doc.text(date, 70, 135);
 
     // ===== RESULTS =====
-    doc.line(20, 100, 190, 100);
+    doc.line(20, 145, 190, 145);
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(14);
-    doc.text("LABORATORY RESULTS", 20, 110);
+    doc.text("LABORATORY RESULTS", 20, 160);
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(12);
 
     const lines = doc.splitTextToSize(result, 165);
-    doc.text(lines, 20, 120);
+    doc.text(lines, 20, 172);
 
     // ===== STATUS =====
-    let y = 130 + (lines.length * 6);
+    let y = 185 + (lines.length * 6);
 
     doc.line(20, y, 190, y);
 

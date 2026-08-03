@@ -65,7 +65,8 @@
 <button onclick="showSection('ai')">🤖 AI</button>
 
 <button onclick="showSection('records')">📁 Records</button>
-
+<button onclick="showSection('notifications')">
+🔔 Notifications </button>
 <button onclick="showSection('profile')">👤 Profile</button>
 
 </div>
@@ -507,7 +508,21 @@ All uploaded reports will appear below.
 </div>
 </section>
 
+<!-- ================= NOTIFICATIONS ================= -->
 
+<section id="notifications" class="page">
+
+<h2>Notifications</h2>
+
+<p>Your recent updates will appear here.</p>
+
+<div id="notificationList">
+
+<p>No notifications yet.</p>
+
+</div>
+
+</section>
 
 <!-- ================= AI INTERPRETER ================= -->
 
@@ -732,13 +747,20 @@ Pending Verification
 </div><hr>
 
 <h3>Incoming Appointments</h3>
+<input
+    type="text"
+    id="dashboardSearch"
+    placeholder="🔍 Search patient, test, laboratory or status..."
+    onkeyup="loadDashboard()"
+>
+
+<br><br>
 
 <div id="dashboardAppointments">
 
 <p>No appointments yet.</p>
 
 </div>
-
 </section>
 
 
@@ -1050,6 +1072,7 @@ Close
 <script type="module" src="dashboard.js"></script>
 <script type="module" src="records.js"></script>
 <script type="module" src="pdf.js"></script>
+<script type="module" src="notifications.js"></script>
 <script src="script.js"></script>
 </body>
 

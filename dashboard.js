@@ -1,4 +1,5 @@
 import { database } from "./firebase.js";
+import { sendNotification } from "./notifications.js";
 
 import {
     ref,
@@ -15,11 +16,18 @@ window.loadDashboard = async function () {
     dashboard.innerHTML = "";
 
     let total = 0;
-    let pending = 0;
+let pending = 0;
+let completed = 0;
 
     try {
 
-        const snapshot = await get(ref(database, "appointments"));
+        const searchInput = document.getElementById("dashboardSearch");
+
+const search = searchInput
+    ? searchInput.value.toLowerCase()
+    : "";
+    
+    const snapshot = await get(ref(database, "appointments"));
 
         if (!snapshot.exists()) {
 
@@ -37,12 +45,31 @@ window.loadDashboard = async function () {
             total++;
 
             const appointment = child.val();
+            const patientName = (appointment.patientName || "").toLowerCase();
+const test = (appointment.test || "").toLowerCase();
+const laboratory = (appointment.laboratory || "").toLowerCase();
+const status = (appointment.status || "").toLowerCase();
+
+if (
+    search &&
+    !patientName.includes(search) &&
+    !test.includes(search) &&
+    !laboratory.includes(search) &&
+    !status.includes(search)
+) {
+    return;
+}
 
             if (appointment.status === "Pending") {
 
                 pending++;
 
             }
+            if (appointment.status === "Completed") {
+
+    completed++;
+
+}
 
             dashboard.innerHTML += `
 
@@ -90,22 +117,42 @@ style="width:100%; margin-top:10px;"></textarea>
 
         document.getElementById("totalBookings").textContent = total;
         document.getElementById("pendingBookings").textContent = pending;
+        document.getElementById("uploadedResults").textContent = completed;
 
     } catch (error) {
 
-        dashboard.innerHTML = "<p>Error loading appointments.</p>";
+    console.error(error);
 
-    }
+    dashboard.innerHTML =
+        "<p>Error loading appointments.</p>";
 
+}
+    
 };
 
 window.approveAppointment = async function (id) {
 
-    await update(ref(database, "appointments/" + id), {
+    const appointmentRef = ref(database, "appointments/" + id);
+
+    const snapshot = await get(appointmentRef);
+
+    const appointment = snapshot.val();
+
+    await update(appointmentRef, {
 
         status: "Approved"
 
     });
+
+    await sendNotification(
+
+        appointment.patientId,
+
+        "✅ Appointment Approved",
+
+        `Your ${appointment.test} appointment at ${appointment.laboratory} has been approved.`
+
+    );
 
     loadDashboard();
 
@@ -116,14 +163,29 @@ window.approveAppointment = async function (id) {
     }
 
 };
-
 window.rejectAppointment = async function (id) {
 
-    await update(ref(database, "appointments/" + id), {
+    const appointmentRef = ref(database, "appointments/" + id);
+
+    const snapshot = await get(appointmentRef);
+
+    const appointment = snapshot.val();
+
+    await update(appointmentRef, {
 
         status: "Rejected"
 
     });
+
+    await sendNotification(
+
+        appointment.patientId,
+
+        "❌ Appointment Rejected",
+
+        `Your ${appointment.test} appointment at ${appointment.laboratory} was rejected. Please book another date.`
+
+    );
 
     loadDashboard();
 
@@ -146,12 +208,28 @@ window.uploadResult = async function (id) {
 
     }
 
-    await update(ref(database, "appointments/" + id), {
+    const appointmentRef = ref(database, "appointments/" + id);
+
+    const snapshot = await get(appointmentRef);
+
+    const appointment = snapshot.val();
+
+    await update(appointmentRef, {
 
         result: result,
         status: "Completed"
 
     });
+
+    await sendNotification(
+
+        appointment.patientId,
+
+        "📄 Laboratory Result Ready",
+
+        `Your ${appointment.test} result from ${appointment.laboratory} is now available in My Records.`
+
+    );
 
     alert("Result uploaded successfully!");
 

@@ -127,9 +127,16 @@ window.loadAppointments = async function () {
                     ${appointment.time}</p>
 
                     <p><strong>Status:</strong>
-                    <span class="pending">
-                    🟡 ${appointment.status}
-                    </span></p>
+<span class="status ${appointment.status.toLowerCase()}">
+${
+appointment.status === "Pending" ? "🟡" :
+appointment.status === "Approved" ? "🟢" :
+appointment.status === "Rejected" ? "🔴" :
+"🔵"
+}
+${appointment.status}
+</span>
+</p>
 
                 </div>
 

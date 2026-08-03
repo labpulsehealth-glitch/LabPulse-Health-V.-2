@@ -49,29 +49,23 @@ window.loadRecords = async function () {
                     <p><strong>📅 Date:</strong>
                     ${appointment.date}</p>
 
-                    <p><strong>Status:</strong>
-                    ✅ Completed</p>
-
+                    <p>
+<strong>Status:</strong>
+<span class="status ${appointment.status.toLowerCase()}">
+${appointment.status}
+</span>
+</p>
                     <hr>
 
                     <h4>Laboratory Result</h4>
 
                     <p>${appointment.result}</p>
                     <br>
-
-<button onclick="downloadReport(
-'${appointment.patientName}',
-'${appointment.patientEmail}',
-'${appointment.laboratory}',
-'${appointment.test}',
-'${appointment.date}',
-'${appointment.result}'
-)">
+                    <button onclick="downloadReport('${child.key}')">
 📄 Download Report
 </button>
 
                 </div>
-
                 <br>
 
                 `;
@@ -89,9 +83,11 @@ window.loadRecords = async function () {
 
     } catch (error) {
 
-        recordList.innerHTML =
-            "<p>Error loading laboratory records.</p>";
+    console.error(error);
 
-    }
+    recordList.innerHTML =
+        "<p>Error loading laboratory records.</p>";
+
+}
 
 };
