@@ -73,6 +73,26 @@ setTimeout(() => {
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
+        const role = localStorage.getItem("userRole");
+        const patientButtons = [
+    "bookBtn",
+    "appointmentsBtn",
+    "aiBtn",
+    "recordsBtn"
+];
+
+patientButtons.forEach((id) => {
+
+    const button = document.getElementById(id);
+
+    if (button) {
+
+        button.style.display =
+            role === "laboratory" ? "none" : "inline-block";
+
+    }
+
+});
 
         const emailElement = document.getElementById("patientEmail");
 
@@ -100,15 +120,8 @@ onAuthStateChanged(auth, (user) => {
 
 if (dashboardBtn) {
 
-    if (laboratoryAccounts.includes(user.email)) {
-
-        dashboardBtn.style.display = "block";
-
-    } else {
-
-        dashboardBtn.style.display = "none";
-
-    }
+    dashboardBtn.style.display =
+        role === "laboratory" ? "block" : "none";
 
 }
 
@@ -129,13 +142,35 @@ if (typeof loadRecords === "function") {
 if (typeof loadNotifications === "function") {
     loadNotifications();
 }
+const patientPages = [
+    "booking",
+    "appointments",
+    "records",
+    "ai"
+];
+
+patientPages.forEach((id) => {
+
+    const page = document.getElementById(id);
+
+    if (page) {
+
+        if (role === "laboratory") {
+
+            page.style.display = "none";
+
+        }
+
+    }
+
+});
     }
 
 });
 
 // Logout
 window.logout = async function () {
-
+localStorage.removeItem("userRole");
     await signOut(auth);
 
     document.getElementById("authMsg").innerHTML =
@@ -171,6 +206,15 @@ window.labLogin = async function () {
 
         message.innerHTML =
             "✅ Laboratory login successful!";
+            if (laboratoryAccounts.includes(email)) {
+
+    localStorage.setItem("userRole", "laboratory");
+
+} else {
+
+    localStorage.setItem("userRole", "patient");
+
+}
 
         setTimeout(() => {
 

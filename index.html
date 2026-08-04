@@ -58,18 +58,7 @@
 
 <button onclick="showSection('compare')">💰 Prices</button>
 
-<button onclick="showSection('booking')">📅 Book</button>
-
-<button onclick="showSection('appointments')">📋 My Appointments</button>
-
-<button onclick="showSection('ai')">🤖 AI</button>
-
-<button onclick="showSection('records')">📁 Records</button>
-<button onclick="showSection('notifications')">
-🔔 Notifications </button>
-<button onclick="showSection('profile')">👤 Profile</button>
-
-</div>
+<button id="bookBtn" onclick="showSection('booking')">📅 Book</button>
 
 <div class="dropdown">
 
@@ -80,6 +69,21 @@
 </button>
 
 <div class="dropdown-content">
+
+  <button id="appointmentsBtn" onclick="showSection('appointments')">
+📋 My Appointments
+</button>
+
+<button id="aiBtn" onclick="showSection('ai')">
+🤖 AI
+</button>
+
+<button id="recordsBtn" onclick="showSection('records')">
+📁 Records
+</button>
+<button onclick="showSection('notifications')">
+🔔 Notifications </button>
+<button onclick="showSection('profile')">👤 Profile</button>
 
 <button onclick="showSection('labPartner')">
 🏥 Register Your Lab
@@ -126,8 +130,6 @@ compare test prices, securely store laboratory reports,
 and better understand their results with AI assistance.
 
 </p>
-
-</section>
 
 
 
@@ -309,6 +311,7 @@ Helping patients make informed healthcare decisions.
 
 </section>
 
+</section>
 
 
 <!-- ================= FIND LABS ================= -->

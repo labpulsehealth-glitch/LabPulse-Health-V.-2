@@ -68,7 +68,7 @@ transform:translateY(-3px);
    NAVIGATION
 ================================= */
 
-.navbar{
+.navbar {
 background:white;
 display:flex;
 justify-content:space-between;
@@ -819,26 +819,6 @@ font-size:18px;
 
 }
 
-.navbar{
-
-flex-direction:column;
-gap:15px;
-
-}
-
-.nav-links{
-
-justify-content:center;
-
-}
-
-.page{
-
-margin:20px;
-padding:25px;
-
-}
-
 .feature-grid{
 
 grid-template-columns:1fr;
@@ -888,12 +868,12 @@ font-size:16px;
 
 }
 
+/*
 button{
-
 width:100%;
 margin-top:10px;
-
 }
+*/
 
 input,
 select,
@@ -1165,85 +1145,83 @@ color:#2e7d32;
 .status.completed{
     background:#4285f4;
 }
-/* ================= MOBILE RESPONSIVE ================= */
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
 
 @media screen and (max-width:768px){
 
-.dashboard-grid{
-display:grid;
-grid-template-columns:1fr;
+    .navbar{
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+        padding:20px;
+    }
+
+    .logo{
+        font-size:24px;
+        text-align:center;
+    }
+
+    .nav-links{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px;
+        width:100%;
+    }
+
+    .nav-links button{
+        flex:1 1 140px;
+        min-width:140px;
+    }
+
+    .dropdown{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .page{
+        margin:15px;
+        padding:20px;
+    }
+
+    .dashboard-grid,
+    .lab-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:30px 20px;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
+    }
+
 }
 
-.lab-grid{
-display:grid;
-grid-template-columns:1fr;
-}
-
-.hero{
-padding:30px 20px;
-text-align:center;
-}
-
-.hero h1{
-font-size:2rem;
-}
-
-.hero p{
-font-size:1rem;
-}
-
-button{
-width:100%;
-margin-top:10px;
-}
-
-input,
-select,
-textarea{
-width:100%;
-box-sizing:border-box;
-}
-
-.lab-card{
-width:100%;
-}
-
-nav{
-flex-direction:column;
-gap:10px;
-}
-
-.dropdown-content{
-width:100%;
-}
-
-table{
-display:block;
-overflow-x:auto;
-}
-
-img{
-max-width:100%;
-height:auto;
-}
-
-}
 @media screen and (max-width:480px){
 
-h1{
-font-size:1.7rem;
-}
+    h1{font-size:1.8rem;}
+    h2{font-size:1.5rem;}
+    h3{font-size:1.2rem;}
 
-h2{
-font-size:1.4rem;
-}
-
-h3{
-font-size:1.1rem;
-}
-
-.dashboard-card h1{
-font-size:2rem;
-}
+    .dashboard-card h1{
+        font-size:2rem;
+    }
 
 }

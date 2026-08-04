@@ -70,7 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
 // =========================================
 
 window.showSection = function(section){
-    if (section === "records" && typeof loadRecords === "function") {
+    const role = localStorage.getItem("userRole");
+
+if (
+    role === "laboratory" &&
+    ["booking", "appointments", "records", "ai"].includes(section)
+) {
+    alert("Access denied. This page is available only for patients.");
+    return;
+}
+if (section === "records" && typeof loadRecords === "function") {
     loadRecords();
 }
 if (section === "notifications" && typeof loadNotifications === "function") {
