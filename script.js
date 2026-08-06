@@ -70,43 +70,70 @@ document.addEventListener("DOMContentLoaded", function () {
 // =========================================
 
 window.showSection = function(section){
+
     const role = localStorage.getItem("userRole");
 
-if (
-    role === "laboratory" &&
-    ["booking", "appointments", "records", "ai"].includes(section)
-) {
-    alert("Access denied. This page is available only for patients.");
-    return;
-}
-if (section === "records" && typeof loadRecords === "function") {
-    loadRecords();
-}
-if (section === "notifications" && typeof loadNotifications === "function") {
+    if (
+        role === "laboratory" &&
+        ["booking","appointments","records","ai"].includes(section)
+    ){
+        alert("Access denied. This page is available only for patients.");
+        return;
+    }
 
-    loadNotifications();
+    if(section==="records" && typeof loadRecords==="function"){
+        loadRecords();
+    }
 
-}
+    if(section==="notifications" && typeof loadNotifications==="function"){
+        loadNotifications();
+    }
 
-    let pages = document.querySelectorAll(".page");
+    // Keep hero visible
+    const hero = document.querySelector(".hero");
+    if(hero){
+        hero.style.display = "block";
+    }
 
-    pages.forEach(function(page){
+    // Hide the Home content
+    const homeContent = document.getElementById("homeContent");
+    if(homeContent){
+        homeContent.style.display = "none";
+    }
 
-        page.style.display = "none";
-
+    // Hide every page
+    document.querySelectorAll(".page").forEach(page=>{
+        page.style.display="none";
     });
 
-    let activePage = document.getElementById(section);
+    // If Home is clicked
+    if(section==="home"){
+
+        if(homeContent){
+            homeContent.style.display="block";
+        }
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+        return;
+    }
+
+    // Show the selected page
+    const activePage=document.getElementById(section);
 
     if(activePage){
+        activePage.style.display="block";
 
-        activePage.style.display = "block";
-
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
     }
 
 };
-
-
 // =========================================
 // FIND LABS
 // =========================================
@@ -493,30 +520,6 @@ window.openPopup = function(title, text, icon){
     document.getElementById("popupIcon").innerHTML = icon;
 
     document.getElementById("popup").style.display = "flex";
-
-};
-
-
-window.closePopup = function(){
-
-    document.getElementById("popup").style.display = "none";
-
-};
-
-
-// =========================================
-// CLOSE POPUP WHEN USER CLICKS OUTSIDE
-// =========================================
-
-window.onclick = function(event){
-
-    let popup = document.getElementById("popup");
-
-    if(event.target === popup){
-
-        popup.style.display = "none";
-
-    }
 
 };
 

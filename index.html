@@ -15,14 +15,12 @@
 <!-- ================= HEADER ================= -->
 
 <header class="hero">
-
   <div class="hero-content">
 
     <h1>LabPulse Health</h1>
 
     <p class="tagline">
-      Find trusted laboratories, compare prices, book medical tests,
-      securely store your results, and receive AI-powered explanations.
+    Discover verified medical laboratories, compare test prices, book appointments, securely store laboratory reports, and better understand your results with AI-powered insights.
     </p>
 
     <div class="hero-buttons">
@@ -115,24 +113,7 @@
 
 </nav>
 
-
-
-<!-- ================= HOME ================= -->
-
-<section id="home" class="page">
-
-<h2>Healthcare Testing Made Simple</h2>
-
-<p class="home-text">
-
-LabPulse helps patients discover verified medical laboratories,
-compare test prices, securely store laboratory reports,
-and better understand their results with AI assistance.
-
-</p>
-
-
-
+<div id="homeContent">
 <!-- ================= WHY LABPULSE ================= -->
 
 <section class="feature-section">
@@ -311,8 +292,7 @@ Helping patients make informed healthcare decisions.
 
 </section>
 
-</section>
-
+</div>
 
 <!-- ================= FIND LABS ================= -->
 
@@ -580,8 +560,6 @@ Interpret Result
 </section>
 
 
-
-```html
 <!-- ================= PATIENT DASHBOARD ================= -->
 
 <section id="profile" class="page">
@@ -656,7 +634,6 @@ placeholder="Location">
 </div>
 
 </section>
-```
 
 
 
@@ -689,11 +666,44 @@ placeholder="Password">
 Login
 
 </button>
-<button onclick="labLogin()">🏥 Laboratory Login</button>
-<button onclick="signUp()">
 
+<section id="labAuth" class="page">
+
+<h2>Laboratory Login</h2>
+
+<div class="auth-box">
+
+<input
+type="email"
+id="labLoginEmail"
+placeholder="Laboratory Email Address">
+
+<input
+type="password"
+id="labLoginPassword"
+placeholder="Password">
+
+<button onclick="labLogin()">
+Login
+</button>
+
+<br><br>
+
+<button onclick="showSection('auth')">
+👤 Patient Login
+</button>
+
+<p id="labAuthMsg"></p>
+
+</div>
+
+</section>
+<button onclick="showSection('labAuth')">
+🏥 Laboratory Login
+</button>
+<br><br>
+<button onclick="showSection('register')">
 Create Account
-
 </button>
 
 <p id="authMsg"></p>
@@ -702,6 +712,87 @@ Create Account
 
 </section>
 
+<section id="register" class="page">
+
+<h2>Create Account</h2>
+
+<p>Please choose how you want to register.</p>
+
+<div class="register-options">
+
+<button onclick="showSection('patientRegister')">
+👤 Register as Patient
+</button>
+
+<button onclick="showSection('labRegister')">
+🏥 Register as Laboratory
+</button>
+
+</div>
+
+</section>
+
+<section id="patientRegister" class="page">
+
+<h2>Create Patient Account</h2>
+
+<div class="auth-box">
+
+<h3>👤 Personal Information</h3>
+
+<input type="text" id="patientName" placeholder="Full Name">
+
+<input type="tel" id="patientPhone" placeholder="Phone Number">
+
+<input type="date" id="patientDOB">
+
+<select id="patientGender">
+    <option value="">Select Gender</option>
+    <option>Male</option>
+    <option>Female</option>
+</select>
+
+<hr>
+
+<h3>🔐 Account Information</h3>
+
+<input type="email" id="patientEmail" placeholder="Email Address">
+
+<input type="password" id="patientPassword" placeholder="Password">
+
+<input type="password" id="patientConfirmPassword" placeholder="Confirm Password">
+
+<button onclick="patientSignUp()">
+Create Patient Account
+</button>
+
+<p id="patientRegisterMsg"></p>
+
+</div>
+
+</section>
+
+<section id="labRegister" class="page">
+
+<h2>Laboratory Registration</h2>
+
+<div class="auth-box">
+
+<input type="text" id="labName" placeholder="Laboratory Name">
+
+<input type="email" id="labEmail" placeholder="Email Address">
+
+<input type="password" id="labPassword" placeholder="Password">
+
+<button onclick="labSignUp()">
+
+Create Laboratory Account
+
+</button>
+
+</div>
+
+</section>
 
 <!-- ================= LAB DASHBOARD ================= -->
 
@@ -1044,28 +1135,6 @@ Submit Registration
 
 </section>
   
-
-<!-- ================= POPUP ================= -->
-
-<div id="popup" class="popup">
-
-<div class="popup-content">
-
-<div id="popupIcon" class="popup-icon"></div>
-
-<h3 id="popupTitle"></h3>
-
-<p id="popupText"></p>
-
-<button onclick="closePopup()">
-
-Close
-
-</button>
-
-</div>
-
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script type="module" src="firebase.js"></script>
