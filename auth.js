@@ -11,7 +11,6 @@ import {
     ref,
     get,
     set,
-    update
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 
 import {
@@ -29,6 +28,12 @@ const laboratoryAccounts = [
 
 window.login = async function () {
 
+    // Make sure the previous user is completely signed out
+    if (auth.currentUser) {
+        await signOut(auth);
+    }
+
+    
     const email = document.getElementById("email").value.trim();
 
     const password = document.getElementById("password").value.trim();
@@ -96,7 +101,92 @@ window.login = async function () {
     }
 
 };
+window.patientSignUp = async function () {
 
+    const fullName = document.getElementById("registerPatientName").value.trim();
+    const phone = document.getElementById("registerPatientPhone").value.trim();
+    const dob = document.getElementById("registerPatientDOB").value;
+    const gender = document.getElementById("registerPatientGender").value;
+
+    const email = document.getElementById("registerPatientEmail").value.trim();
+    const password = document.getElementById("registerPatientPassword").value.trim();
+    const confirmPassword = document.getElementById("registerPatientConfirmPassword").value.trim();
+
+    const message = document.getElementById("patientRegisterMsg");
+
+    // Validation
+    if (
+        !fullName ||
+        !phone ||
+        !dob ||
+        !gender ||
+        !email ||
+        !password ||
+        !confirmPassword
+    ) {
+
+        message.innerHTML = "❌ Please complete all fields.";
+        return;
+    }
+
+    if (password !== confirmPassword) {
+
+        message.innerHTML = "❌ Passwords do not match.";
+        return;
+    }
+
+    if (password.length < 6) {
+
+        message.innerHTML = "❌ Password must be at least 6 characters.";
+        return;
+    }
+
+    try {
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+        await set(
+            ref(database, "patients/" + user.uid),
+            {
+
+                fullName: fullName,
+                phone: phone,
+                dob: dob,
+                gender: gender,
+                email: email,
+                createdAt: new Date().toISOString()
+
+            }
+        );
+
+        localStorage.setItem("userRole", "patient");
+
+        message.innerHTML =
+            "✅ Patient account created successfully!";
+
+        setTimeout(() => {
+
+            showSection("profile");
+
+        }, 1000);
+
+    }
+
+    catch (error) {
+
+        message.innerHTML =
+            "❌ " + error.message;
+
+    }
+
+};
 // Logout
 window.logout = async function () {
 localStorage.removeItem("userRole");
@@ -115,7 +205,9 @@ if (dashboardBtn) {
 
 };
 window.labLogin = async function () {
-
+    if (auth.currentUser) {
+    await signOut(auth);
+}
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
     const message = document.getElementById("authMsg");
@@ -159,3 +251,47 @@ window.labLogin = async function () {
     }
 
 };
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) return;
+
+    console.log("User detected:", user.email);
+
+    const role = localStorage.getItem("userRole");
+
+    if (role === "patient") {
+
+        if (typeof loadProfile === "function") {
+            await loadProfile();
+        }
+
+        if (typeof loadAppointments === "function") {
+            loadAppointments();
+        }
+
+        if (typeof loadRecords === "function") {
+            loadRecords();
+        }
+
+        if (typeof loadNotifications === "function") {
+            loadNotifications();
+        }
+
+    }
+
+    if (role === "laboratory") {
+
+        const dashboardBtn =
+            document.getElementById("dashboardBtn");
+
+        if (dashboardBtn) {
+            dashboardBtn.style.display = "block";
+        }
+
+        if (typeof loadDashboard === "function") {
+            loadDashboard();
+        }
+
+    }
+
+});
