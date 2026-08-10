@@ -1225,3 +1225,11 @@ color:#2e7d32;
     }
 
 }
+@media screen and (max-width: 500px){
+
+    #auth .auth-box > button,
+    #labAuth .auth-box > button,
+    #register .register-options button,
+    #labRegister .auth-box > button{
+        margin-top: 12px;
+    }

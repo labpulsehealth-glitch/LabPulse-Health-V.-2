@@ -81,13 +81,19 @@ window.showSection = function(section){
         return;
     }
 
-    if(section==="records" && typeof loadRecords==="function"){
-        loadRecords();
-    }
+    // Load section-specific data
 
-    if(section==="notifications" && typeof loadNotifications==="function"){
-        loadNotifications();
-    }
+if(section === "profile" && typeof loadProfile === "function"){
+    loadProfile();
+}
+
+if(section === "records" && typeof loadRecords === "function"){
+    loadRecords();
+}
+
+if(section === "notifications" && typeof loadNotifications === "function"){
+    loadNotifications();
+}
 
     // Keep hero visible
     const hero = document.querySelector(".hero");

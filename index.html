@@ -667,8 +667,24 @@ Login
 
 </button>
 
-<section id="labAuth" class="page">
+<button onclick="showSection('labAuth')">
+  🏥 Laboratory Login
+        </button>
 
+        <button onclick="showSection('register')">
+            Create Account
+        </button>
+
+        <p id="authMsg"></p>
+
+    </div>
+
+</section>
+
+
+<!-- LABORATORY LOGIN MUST BE OUTSIDE AUTH -->
+
+<section id="labAuth" class="page">
 <h2>Laboratory Login</h2>
 
 <div class="auth-box">
@@ -694,19 +710,6 @@ Login
 </button>
 
 <p id="labAuthMsg"></p>
-
-</div>
-
-</section>
-<button onclick="showSection('labAuth')">
-🏥 Laboratory Login
-</button>
-<br><br>
-<button onclick="showSection('register')">
-Create Account
-</button>
-
-<p id="authMsg"></p>
 
 </div>
 
@@ -986,40 +989,6 @@ AI explanations are educational and should never replace medical advice.
 
 </section>
 
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<h3>LabPulse Health</h3>
-
-<p>
-
-Helping patients make smarter laboratory decisions.
-
-</p>
-
-<div class="footer-links">
-
-<span>Privacy Policy</span>
-
-<span>Terms of Service</span>
-
-<span>Support</span>
-
-</div>
-
-<p>
-
-© 2026 LabPulse Health.
-
-All Rights Reserved.
-
-</p>
-
-</footer>
-
 <!-- ================= LABORATORY REGISTRATION ================= -->
 
 <section id="labPartner" class="page">
@@ -1133,6 +1102,38 @@ Submit Registration
 <p id="labRegisterMessage"></p>
 
 </section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>LabPulse Health</h3>
+
+<p>
+
+Helping patients make smarter laboratory decisions.
+
+</p>
+
+<div class="footer-links">
+
+<span>Privacy Policy</span>
+
+<span>Terms of Service</span>
+
+<span>Support</span>
+
+</div>
+
+<p>
+
+© 2026 LabPulse Health.
+
+All Rights Reserved.
+
+</p>
+
+</footer>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 

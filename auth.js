@@ -21,8 +21,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 const laboratoryAccounts = [
 
-    "admin@labpulse.com",
-    "lab@labpulse.com"
+    "admin@labpulse.com"
 
 ];
 
@@ -187,6 +186,70 @@ window.patientSignUp = async function () {
     }
 
 };
+window.labSignUp = async function () {
+
+    const labName =
+        document.getElementById("labName").value.trim();
+
+    const email =
+        document.getElementById("labEmail").value.trim();
+
+    const password =
+        document.getElementById("labPassword").value.trim();
+
+    if (!labName || !email || !password) {
+
+        alert("❌ Please complete all fields.");
+        return;
+
+    }
+
+    if (password.length < 6) {
+
+        alert("❌ Password must be at least 6 characters.");
+        return;
+
+    }
+
+    try {
+
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+        await set(
+            ref(database, "laboratories/" + user.uid),
+            {
+                labName: labName,
+                email: email,
+                status: "Pending",
+                createdAt: new Date().toISOString()
+            }
+        );
+
+        localStorage.setItem(
+            "userRole",
+            "laboratory"
+        );
+
+        alert(
+            "✅ Laboratory account created successfully! Your account is pending verification."
+        );
+
+        showSection("dashboard");
+
+    } catch (error) {
+
+        alert("❌ " + error.message);
+
+    }
+
+};
 // Logout
 window.logout = async function () {
 localStorage.removeItem("userRole");
@@ -205,17 +268,24 @@ if (dashboardBtn) {
 
 };
 window.labLogin = async function () {
-    if (auth.currentUser) {
-    await signOut(auth);
-}
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const message = document.getElementById("authMsg");
 
-    if (!laboratoryAccounts.includes(email)) {
+    if (auth.currentUser) {
+        await signOut(auth);
+    }
+
+    const email =
+        document.getElementById("labLoginEmail").value.trim();
+
+    const password =
+        document.getElementById("labLoginPassword").value.trim();
+
+    const message =
+        document.getElementById("labAuthMsg");
+
+    if (!email || !password) {
 
         message.innerHTML =
-            "❌ This account is not registered as a laboratory.";
+            "❌ Please enter your laboratory email and password.";
 
         return;
 
@@ -223,19 +293,42 @@ window.labLogin = async function () {
 
     try {
 
-        await signInWithEmailAndPassword(auth, email, password);
+        // Sign in with Firebase Authentication
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = userCredential.user;
+
+        // Check whether this account exists as a laboratory
+        const labRef =
+            ref(database, "laboratories/" + user.uid);
+
+        const snapshot =
+            await get(labRef);
+
+        if (!snapshot.exists()) {
+
+            await signOut(auth);
+
+            message.innerHTML =
+                "❌ This account is not registered as a laboratory.";
+
+            return;
+
+        }
+
+        // Laboratory account confirmed
+        localStorage.setItem(
+            "userRole",
+            "laboratory"
+        );
 
         message.innerHTML =
             "✅ Laboratory login successful!";
-            if (laboratoryAccounts.includes(email)) {
-
-    localStorage.setItem("userRole", "laboratory");
-
-} else {
-
-    localStorage.setItem("userRole", "patient");
-
-}
 
         setTimeout(() => {
 

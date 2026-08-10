@@ -214,14 +214,7 @@ window.labLogin = async function () {
     const password = document.getElementById("password").value.trim();
     const message = document.getElementById("authMsg");
 
-    if (!laboratoryAccounts.includes(email)) {
-
-        message.innerHTML =
-            "❌ This account is not registered as a laboratory.";
-
-        return;
-
-    }
+    
 
     try {
 
