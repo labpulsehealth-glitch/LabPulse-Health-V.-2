@@ -154,13 +154,20 @@ window.showSection = function(section) {
 
     if (activePage) {
 
-        activePage.style.display = "block";
+    activePage.style.display = "block";
 
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
+    // Load profile only after the Profile page is displayed
+    if (
+        section === "profile" &&
+        typeof loadProfile === "function"
+    ) {
+        loadProfile();
+    }
         // Load appointments when opened
         if (
             section === "appointments" &&
