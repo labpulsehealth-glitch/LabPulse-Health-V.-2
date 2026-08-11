@@ -369,49 +369,15 @@ window.labLogin = async function () {
 };
 onAuthStateChanged(auth, async (user) => {
 
-    const loginBtn = document.getElementById("loginBtn");
+    // Update Login / Logout button
+    updateAuthButton(user);
 
-    // ================= NOT LOGGED IN =================
-
+    // Nobody is logged in
     if (!user) {
-
-        if (loginBtn) {
-
-            loginBtn.textContent = "🔐 Login";
-
-            loginBtn.onclick = function () {
-
-                showSection("auth");
-
-            };
-
-        }
-
         return;
     }
 
-
-    // ================= USER IS LOGGED IN =================
-
     console.log("User detected:", user.email);
-
-    // Change Login button to Logout
-    if (loginBtn) {
-
-        loginBtn.textContent = "🚪 Logout";
-
-        loginBtn.onclick = async function () {
-
-            await signOut(auth);
-
-        };
-
-    }
-
-    updateAuthButton(user);
-
-
-    // ================= GET USER ROLE =================
 
     const role = localStorage.getItem("userRole");
 
@@ -447,9 +413,7 @@ onAuthStateChanged(auth, async (user) => {
             document.getElementById("dashboardBtn");
 
         if (dashboardBtn) {
-
             dashboardBtn.style.display = "block";
-
         }
 
         if (typeof loadDashboard === "function") {
