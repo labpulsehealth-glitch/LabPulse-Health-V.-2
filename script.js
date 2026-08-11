@@ -106,13 +106,6 @@ window.showSection = function(section) {
         loadNotifications();
     }
 
-    if (
-        section === "profile" &&
-        typeof loadProfile === "function"
-    ) {
-        loadProfile();
-    }
-
     // Keep hero visible
     const hero = document.querySelector(".hero");
 
