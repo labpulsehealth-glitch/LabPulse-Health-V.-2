@@ -367,7 +367,24 @@ window.labLogin = async function () {
     }
 
 };
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, (user) => {
+
+    const loginBtn = document.getElementById("loginBtn");
+
+    if (user) {
+
+        // Patient is logged in
+        if (loginBtn) {
+
+            loginBtn.textContent = "🚪 Logout";
+
+            loginBtn.onclick = async function () {
+
+                await signOut(auth);
+
+            };
+
+        }
 
     if (!user) return;
 
@@ -411,6 +428,25 @@ onAuthStateChanged(auth, async (user) => {
          if (typeof loadProfile === "function") {
     await loadProfile();
 }
+        
+    } else {
+
+        // Nobody is logged in
+        if (loginBtn) {
+
+            loginBtn.textContent = "🔐 Login";
+
+            loginBtn.onclick = function () {
+
+                showSection("auth");
+
+            };
+
+        }
+
+    }
+
+});
     }
 
 });
