@@ -427,31 +427,3 @@ onAuthStateChanged(auth, async (user) => {
     }
 
 });
-window.handleAuthNav = function () {
-
-    const user = auth.currentUser;
-
-    if (user) {
-        logout();
-    } else {
-    updateAuthButton(null);
-        showSection("auth");
-    }
-
-};
-function updateAuthButton(user) {
-
-    const btn = document.getElementById("authNavBtn");
-
-    if (!btn) return;
-
-    if (user) {
-
-        btn.innerHTML = "🚪 Logout";
-
-    } else {
-
-        btn.innerHTML = "🔐 Login";
-
-    }
-}
