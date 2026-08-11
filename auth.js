@@ -367,31 +367,56 @@ window.labLogin = async function () {
     }
 
 };
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
     const loginBtn = document.getElementById("loginBtn");
 
-    if (user) {
+    // ================= NOT LOGGED IN =================
 
-        // Patient is logged in
+    if (!user) {
+
         if (loginBtn) {
 
-            loginBtn.textContent = "🚪 Logout";
+            loginBtn.textContent = "🔐 Login";
 
-            loginBtn.onclick = async function () {
+            loginBtn.onclick = function () {
 
-                await signOut(auth);
+                showSection("auth");
 
             };
 
         }
 
-    if (!user) return;
+        return;
+    }
+
+
+    // ================= USER IS LOGGED IN =================
 
     console.log("User detected:", user.email);
+
+    // Change Login button to Logout
+    if (loginBtn) {
+
+        loginBtn.textContent = "🚪 Logout";
+
+        loginBtn.onclick = async function () {
+
+            await signOut(auth);
+
+        };
+
+    }
+
     updateAuthButton(user);
 
+
+    // ================= GET USER ROLE =================
+
     const role = localStorage.getItem("userRole");
+
+
+    // ================= PATIENT =================
 
     if (role === "patient") {
 
@@ -413,40 +438,28 @@ onAuthStateChanged(auth, (user) => {
 
     }
 
+
+    // ================= LABORATORY =================
+
     if (role === "laboratory") {
 
         const dashboardBtn =
             document.getElementById("dashboardBtn");
 
         if (dashboardBtn) {
+
             dashboardBtn.style.display = "block";
+
         }
 
         if (typeof loadDashboard === "function") {
             loadDashboard();
         }
-         if (typeof loadProfile === "function") {
-    await loadProfile();
-}
-        
-    } else {
 
-        // Nobody is logged in
-        if (loginBtn) {
-
-            loginBtn.textContent = "🔐 Login";
-
-            loginBtn.onclick = function () {
-
-                showSection("auth");
-
-            };
-
+        if (typeof loadProfile === "function") {
+            await loadProfile();
         }
 
-    }
-
-});
     }
 
 });
