@@ -133,11 +133,13 @@ font-weight:bold;
 display:none;
 position:absolute;
 right:0;
+top:100%;
 background:white;
 min-width:220px;
 border-radius:10px;
 box-shadow:0 8px 18px rgba(0,0,0,.15);
 overflow:hidden;
+z-index:9999;
 }
 
 .dropdown-content button{
