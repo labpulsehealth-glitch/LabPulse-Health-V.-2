@@ -4,6 +4,55 @@ import {
   push,
   get
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+async function loadApprovedLaboratories() {
+
+    const labSelect = document.getElementById("labSelect");
+
+    if (!labSelect) return;
+
+    try {
+
+        const snapshot =
+            await get(ref(database, "laboratories"));
+
+        labSelect.innerHTML =
+            '<option value="">Select a Laboratory</option>';
+
+        if (!snapshot.exists()) {
+            return;
+        }
+
+        snapshot.forEach((child) => {
+
+            const lab = child.val();
+
+            if (lab.status === "Approved") {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = child.key;
+
+                option.textContent =
+                    lab.labName;
+
+                labSelect.appendChild(option);
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error loading laboratories:",
+            error
+        );
+
+    }
+}
+window.loadApprovedLaboratories =
+    loadApprovedLaboratories;
 window.bookTest = async function () {
 
     const user = auth.currentUser;

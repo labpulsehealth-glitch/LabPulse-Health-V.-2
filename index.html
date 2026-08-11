@@ -81,10 +81,12 @@
 </button>
 <button onclick="showSection('notifications')">
 🔔 Notifications </button>
-<button onclick="showSection('profile')">👤 Profile</button>
+<button id="profileNavBtn">
+    👤 Profile
+</button>
 
-<button onclick="showSection('labPartner')">
-🏥 Register Your Lab
+<button id="labRegisterBtn" onclick="showSection('labPartner')">
+    🏥 Register Your Lab
 </button>
 
 <button id="dashboardBtn" onclick="showSection('dashboard')" style="display:none;">
@@ -103,10 +105,9 @@
 📞 Contact
 </button>
 
-<button onclick="showSection('auth')">
-🔐 Login
+<button id="loginBtn">
+    🔐 Login
 </button>
-
 </div>
 
 </div>
@@ -368,17 +369,7 @@ placeholder="Enter your phone number">
 <label>Select Laboratory</label>
 
 <select id="labSelect">
-
-<option>Select a Laboratory</option>
-
-<option>Ace-Biomed Laboratories</option>
-
-<option>Alpha Diagnostics</option>
-
-<option>LifeCare Medical Laboratory</option>
-
-<option>St. Mary's Diagnostic Centre</option>
-
+    <option value="">Loading laboratories...</option>
 </select>
 
 <label>Select Test</label>
@@ -521,13 +512,52 @@ Enter your laboratory test details for a simplified explanation.
 
 <label>Test Name</label>
 
-<input
+<select id="testName">
 
-type="text"
+    <option value="">Select a Test</option>
 
-id="testName"
+    <option value="pcv">PCV / Packed Cell Volume</option>
+    <option value="hemoglobin">Hemoglobin</option>
+    <option value="wbc">White Blood Cell Count</option>
+    <option value="platelets">Platelet Count</option>
+    <option value="fbc">Full Blood Count</option>
 
-placeholder="Example: Hemoglobin">
+    <option value="glucose">Blood Glucose</option>
+    <option value="hba1c">HbA1c</option>
+
+    <option value="cholesterol">Total Cholesterol</option>
+    <option value="ldl">LDL Cholesterol</option>
+    <option value="hdl">HDL Cholesterol</option>
+    <option value="triglycerides">Triglycerides</option>
+
+    <option value="creatinine">Creatinine</option>
+    <option value="urea">Urea</option>
+    <option value="sodium">Sodium</option>
+    <option value="potassium">Potassium</option>
+
+    <option value="alt">ALT</option>
+    <option value="ast">AST</option>
+    <option value="bilirubin">Bilirubin</option>
+
+    <option value="esr">ESR</option>
+    <option value="crp">C-Reactive Protein (CRP)</option>
+
+    <option value="malaria">Malaria Test</option>
+    <option value="hiv">HIV Screening</option>
+    <option value="hepatitis_b">Hepatitis B Screening</option>
+    <option value="hepatitis_c">Hepatitis C Screening</option>
+
+    <option value="pregnancy">Pregnancy Test</option>
+
+    <option value="urinalysis">Urinalysis</option>
+
+    <option value="blood_group">Blood Group</option>
+    <option value="genotype">Genotype</option>
+
+    <option value="tsh">TSH</option>
+    <option value="free_t4">Free T4</option>
+
+</select>
 
 <label>Result Value</label>
 
@@ -564,78 +594,155 @@ Interpret Result
 
 <section id="profile" class="page">
 
-<h2>Patient Dashboard</h2>
+    <h2>Patient Dashboard</h2>
 
-<div class="profile-card">
+    <div class="profile-card">
 
-<div class="profile-avatar">
-👤
-</div>
+        <div class="profile-avatar">
+            👤
+        </div>
 
-<h3 id="patientName">Welcome!</h3>
+        <h3 id="patientName">Welcome!</h3>
 
-<p><strong>Email:</strong> <span id="patientEmail">Loading...</span></p>
+        <p>
+            <strong>Email:</strong>
+            <span id="patientEmail">Loading...</span>
+        </p>
 
-<br>
+        <div class="profile-details">
 
-<input
-type="text"
-id="profileName"
-placeholder="Full Name">
+            <p>
+                <strong>Full Name:</strong>
+                <span id="profileNameDisplay">Not provided</span>
+            </p>
 
-<input
-type="text"
-id="profilePhone"
-placeholder="Phone Number">
+            <p>
+                <strong>Phone:</strong>
+                <span id="profilePhoneDisplay">Not provided</span>
+            </p>
 
-<input
-type="text"
-id="profileLocation"
-placeholder="Location">
+            <p>
+                <strong>Location:</strong>
+                <span id="profileLocationDisplay">Not provided</span>
+            </p>
 
-<br>
+        </div>
 
-<button onclick="saveProfile()">
-💾 Save Profile
-</button>
+        <!-- Hidden until Edit Profile is clicked -->
 
-<br><br>
+        <div id="profileEditForm" style="display:none;">
 
-<button onclick="showSection('booking')">
-🧪 Book a Laboratory Test
-</button>
+            <input
+                type="text"
+                id="profileName"
+                placeholder="Full Name"
+            >
 
-<br><br>
+            <input
+                type="text"
+                id="profilePhone"
+                placeholder="Phone Number"
+            >
 
-<button onclick="showSection('upload')">
-📄 View My Laboratory Records
-</button>
+            <input
+                type="text"
+                id="profileLocation"
+                placeholder="Location"
+            >
 
-<br><br>
+            <button onclick="saveProfile()">
+        💾 Save Changes
+    </button>
 
-<button onclick="showSection('compare')">
-💰 Compare Test Prices
-</button>
-
-<br><br>
-
-<button onclick="showSection('labs')">
-🔍 Find Laboratories
-</button>
-
-<br><br>
-
-<button onclick="logout()">
-🚪 Logout
-</button>
-
-<p id="profileMessage"></p>
+    <button onclick="cancelEditProfile()">
+        ↩️ Back
+    </button>
 
 </div>
+
+        <button
+            id="editProfileButton"
+            onclick="editProfile()"
+            style="display:none;"
+        >
+            ✏️ Edit Profile
+        </button>
+
+        <br><br>
+
+        <button onclick="showSection('booking')">
+            🧪 Book a Laboratory Test
+        </button>
+
+        <br><br>
+
+        <button onclick="showSection('upload')">
+            📄 View My Laboratory Records
+        </button>
+
+        <br><br>
+
+        <button onclick="showSection('compare')">
+            💰 Compare Test Prices
+        </button>
+
+        <br><br>
+
+        <button onclick="showSection('labs')">
+            🔍 Find Laboratories
+        </button>
+
+        <p id="profileMessage"></p>
+
+    </div>
 
 </section>
 
+<!-- ================= LABORATORY PROFILE ================= -->
 
+<section id="labProfile" class="page">
+
+    <h2>Laboratory Profile</h2>
+
+    <div class="profile-card">
+
+        <div class="profile-avatar">
+            🏥
+        </div>
+
+        <h3 id="labProfileName">
+            Laboratory
+        </h3>
+
+        <p>
+            <strong>Email:</strong>
+            <span id="labProfileEmail">
+                Loading...
+            </span>
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            <span id="labProfileStatus">
+                Loading...
+            </span>
+        </p>
+
+        <br>
+
+        <button id="labDashboardBtn" onclick="showSection('dashboard')">
+    📊 Laboratory Dashboard
+</button>
+
+        <br><br>
+
+        <button onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+</section>
 
 <!-- ================= LOGIN / SIGN UP ================= -->
 
@@ -1060,28 +1167,400 @@ id="labDescription"
 rows="5"
 placeholder="Tell patients about your laboratory..."></textarea>
 
-<h3>Available Laboratory Tests</h3>
+<h3>Available Laboratory Tests & Prices</h3>
 
-<div class="checkbox-group">
+<div class="test-price-list">
 
-<label><input type="checkbox"> Malaria Test</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Malaria Test">
+            Malaria Test
+        </label>
+        <input
+            type="number"
+            name="testPrice_Malaria_Test"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Full Blood Count</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Full Blood Count">
+            Full Blood Count (FBC)
+        </label>
+        <input
+            type="number"
+            name="testPrice_Full_Blood_Count"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Blood Glucose</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="PCV">
+            PCV (Packed Cell Volume)
+        </label>
+        <input
+            type="number"
+            name="testPrice_PCV"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Lipid Profile</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Blood Glucose">
+            Blood Glucose
+        </label>
+        <input
+            type="number"
+            name="testPrice_Blood_Glucose"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Kidney Function Test</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Lipid Profile">
+            Lipid Profile
+        </label>
+        <input
+            type="number"
+            name="testPrice_Lipid_Profile"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Liver Function Test</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Kidney Function Test">
+            Kidney Function Test
+        </label>
+        <input
+            type="number"
+            name="testPrice_Kidney_Function_Test"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> HIV Screening</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Liver Function Test">
+            Liver Function Test
+        </label>
+        <input
+            type="number"
+            name="testPrice_Liver_Function_Test"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
-<label><input type="checkbox"> Pregnancy Test</label>
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="HIV Screening">
+            HIV Screening
+        </label>
+        <input
+            type="number"
+            name="testPrice_HIV_Screening"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
 
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Hepatitis B Screening">
+            Hepatitis B Screening
+        </label>
+        <input
+            type="number"
+            name="testPrice_Hepatitis_B_Screening"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Hepatitis C Screening">
+            Hepatitis C Screening
+        </label>
+        <input
+            type="number"
+            name="testPrice_Hepatitis_C_Screening"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Pregnancy Test">
+            Pregnancy Test
+        </label>
+        <input
+            type="number"
+            name="testPrice_Pregnancy_Test"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Urinalysis">
+            Urinalysis
+        </label>
+        <input
+            type="number"
+            name="testPrice_Urinalysis"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Stool Examination">
+            Stool Examination
+        </label>
+        <input
+            type="number"
+            name="testPrice_Stool_Examination"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Widal Test">
+            Widal Test
+        </label>
+        <input
+            type="number"
+            name="testPrice_Widal_Test"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Blood Group and Genotype">
+            Blood Group & Genotype
+        </label>
+        <input
+            type="number"
+            name="testPrice_Blood_Group_Genotype"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="HbA1c">
+            HbA1c
+        </label>
+        <input
+            type="number"
+            name="testPrice_HbA1c"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+
+    <div class="test-price-row">
+        <label>
+            <input type="checkbox" name="labTest" value="Electrolytes">
+            Electrolytes
+        </label>
+        <input
+            type="number"
+            name="testPrice_Electrolytes"
+            placeholder="Price (₦)"
+            min="0"
+        >
+    </div>
+    <div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Thyroid Function Test">
+        Thyroid Function Test
+    </label>
+    <input
+        type="number"
+        name="testPrice_Thyroid_Function_Test"
+        placeholder="Price (₦)"
+        min="0"
+    >
 </div>
 
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Hb Electrophoresis">
+        Hb Electrophoresis
+    </label>
+    <input
+        type="number"
+        name="testPrice_Hb_Electrophoresis"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="ESR">
+        ESR
+    </label>
+    <input
+        type="number"
+        name="testPrice_ESR"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Blood Film">
+        Blood Film
+    </label>
+    <input
+        type="number"
+        name="testPrice_Blood_Film"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Coagulation Profile">
+        Coagulation Profile
+    </label>
+    <input
+        type="number"
+        name="testPrice_Coagulation_Profile"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="D-Dimer">
+        D-Dimer
+    </label>
+    <input
+        type="number"
+        name="testPrice_D-Dimer"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="C-Reactive Protein">
+        C-Reactive Protein (CRP)
+    </label>
+    <input
+        type="number"
+        name="testPrice_C-Reactive_Protein"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Uric Acid">
+        Uric Acid
+    </label>
+    <input
+        type="number"
+        name="testPrice_Uric_Acid"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Calcium">
+        Calcium
+    </label>
+    <input
+        type="number"
+        name="testPrice_Calcium"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Magnesium">
+        Magnesium
+    </label>
+    <input
+        type="number"
+        name="testPrice_Magnesium"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Amylase">
+        Amylase
+    </label>
+    <input
+        type="number"
+        name="testPrice_Amylase"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="PSA">
+        PSA
+    </label>
+    <input
+        type="number"
+        name="testPrice_PSA"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+<div class="test-price-row">
+    <label>
+        <input type="checkbox" name="labTest" value="Vitamin D">
+        Vitamin D
+    </label>
+    <input
+        type="number"
+        name="testPrice_Vitamin_D"
+        placeholder="Price (₦)"
+        min="0"
+    >
+</div>
+
+</div>
 <h3>Upload Documents</h3>
 
 <label>Operating Licence</label>

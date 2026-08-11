@@ -24,7 +24,30 @@ const laboratoryAccounts = [
     "admin@labpulse.com"
 
 ];
+window.updateAuthButton = function (user) {
 
+    const loginButton = document.getElementById("loginBtn");
+
+    if (!loginButton) return;
+
+    if (user) {
+
+        loginButton.textContent = "🚪 Logout";
+
+        loginButton.onclick = function () {
+            logout();
+        };
+
+    } else {
+
+        loginButton.textContent = "🔐 Login";
+
+        loginButton.onclick = function () {
+            showSection("auth");
+        };
+
+    }
+};
 window.login = async function () {
 
     // Make sure the previous user is completely signed out
@@ -349,6 +372,7 @@ onAuthStateChanged(auth, async (user) => {
     if (!user) return;
 
     console.log("User detected:", user.email);
+    updateAuthButton(user);
 
     const role = localStorage.getItem("userRole");
 
@@ -384,7 +408,37 @@ onAuthStateChanged(auth, async (user) => {
         if (typeof loadDashboard === "function") {
             loadDashboard();
         }
-
+         if (typeof loadProfile === "function") {
+    await loadProfile();
+}
     }
 
 });
+window.handleAuthNav = function () {
+
+    const user = auth.currentUser;
+
+    if (user) {
+        logout();
+    } else {
+    updateAuthButton(null);
+        showSection("auth");
+    }
+
+};
+function updateAuthButton(user) {
+
+    const btn = document.getElementById("authNavBtn");
+
+    if (!btn) return;
+
+    if (user) {
+
+        btn.innerHTML = "🚪 Logout";
+
+    } else {
+
+        btn.innerHTML = "🔐 Login";
+
+    }
+}
